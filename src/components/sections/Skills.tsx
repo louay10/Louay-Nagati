@@ -1,0 +1,339 @@
+'use client'
+
+import {
+  Brain,
+  Database,
+  BarChart3,
+  GraduationCap,
+  Award,
+  Code,
+  TerminalSquare,
+  Sparkles,
+  Cpu,
+  Cloud,
+  Zap,
+  BookOpen,
+  ChevronRight
+} from 'lucide-react'
+import { useLanguageTheme } from '@/providers/LanguageThemeContext'
+import { useEffect, useRef, useState } from 'react'
+
+export function Skills() {
+  const { language } = useLanguageTheme()
+  const [isVisible, setIsVisible] = useState(false)
+  const [activeCategory, setActiveCategory] = useState('datascience')
+  const ref = useRef<HTMLElement | null>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((e) => setIsVisible(e.isIntersecting)),
+      { threshold: 0.2 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  const skillCategories = [
+    {
+      id: 'datascience',
+      icon: Brain,
+      title: language === 'FR' ? 'Data Science & IA' : 'Data Science & AI',
+      color: 'from-purple-500 to-pink-500',
+      skills: [
+        { name: 'Machine Learning', level: 90 },
+        { name: 'Deep Learning', level: 85 },
+        { name: 'NLP & LLMs', level: 85 },
+        { name: 'Generative AI', level: 80 },
+        { name: 'Computer Vision', level: 75 },
+        { name: 'PyTorch/TensorFlow', level: 85 }
+      ]
+    },
+    {
+      id: 'programming',
+      icon: Code,
+      title: language === 'FR' ? 'Programmation' : 'Programming',
+      color: 'from-blue-500 to-cyan-500',
+      skills: [
+        { name: 'Python', level: 95 },
+        { name: 'R', level: 80 },
+        { name: 'Java', level: 75 },
+        { name: 'C/C++', level: 70 },
+        { name: 'JavaScript', level: 75 },
+        { name: 'PHP', level: 70 }
+      ]
+    },
+    {
+      id: 'databases',
+      icon: Database,
+      title: language === 'FR' ? 'Bases de données & Big Data' : 'Databases & Big Data',
+      color: 'from-green-500 to-emerald-500',
+      skills: [
+        { name: 'SQL/MySQL', level: 90 },
+        { name: 'MongoDB', level: 80 },
+        { name: 'PostgreSQL', level: 75 },
+        { name: 'Hadoop/Hive', level: 70 },
+        { name: 'HBase', level: 65 },
+        { name: 'Firebase', level: 75 }
+      ]
+    },
+    {
+      id: 'webdev',
+      icon: BarChart3,
+      title: language === 'FR' ? 'Développement Web' : 'Web Development',
+      color: 'from-orange-500 to-red-500',
+      skills: [
+        { name: 'Streamlit', level: 90 },
+        { name: 'Flask/FastAPI', level: 85 },
+        { name: 'React', level: 75 },
+        { name: 'Laravel/Symfony', level: 70 },
+        { name: 'HTML/CSS/JavaScript', level: 80 },
+        { name: 'REST APIs', level: 85 }
+      ]
+    }
+  ]
+
+  const certifications = [
+  {
+    domain: 'AI & Deep Learning',
+    color: 'from-purple-500 to-pink-500',
+    items: [
+      { icon: Cpu, title: 'Fundamentals of Deep Learning', issuer: 'NVIDIA', year: '2024', link: 'https://learn.nvidia.com/certificates?id=-NSMaA2oSKCSKBinnLGstQ' },
+      { icon: Sparkles, title: 'Generative AI with Diffusion Models', issuer: 'NVIDIA', year: '2024', link: 'https://learn.nvidia.com/certificates?id=-uRO0lLtQJu6BWgkS31BHw' },
+      { icon: BookOpen, title: 'Building Transformer-Based NLP Applications', issuer: 'NVIDIA', year: '2024', link: 'https://learn.nvidia.com/certificates?id=0QOAR9m5T6mHaNN_PMoJQQ' },
+      { icon: Brain, title: 'Applications of AI for Predictive Maintenance', issuer: 'NVIDIA', year: '2024', link: 'https://learn.nvidia.com/certificates?id=vuGRhvIYTRCJUsbkCjOYdg' }
+    ]
+  },
+  {
+    domain: 'Data Science',
+    color: 'from-cyan-500 to-blue-500',
+    items: [
+      { icon: BarChart3, title: 'Machine Learning in Python', issuer: '365 Data Science', year: '2023', link: 'https://learn.365datascience.com/c/acc6523465/' },
+      { icon: Database, title: 'Python for Data Science, AI & Development', issuer: 'Coursera', year: '2023', link: 'https://coursera.org/share/20e8316562c0a9c165fdf2008ce0fe57' },
+      // Émetteur précisé si possible :
+      { icon: Zap, title: 'ChatGPT for Data Science', issuer: '365 Data Science', year: '2023', link: 'https://coursera.org/share/20e8316562c0a9c165fdf2008ce0fe57' },
+      { icon: ChartBar, title: 'Power BI', issuer: '365 Data Science', year: '2023', link: 'https://learn.365datascience.com/c/16c602fd38/' }
+    ]
+  }
+]
+
+  const education = [
+    {
+      degree: language === 'FR' ? 'Ingénieur en informatique spécialité BI/Big Data' : 'Computer Engineer specialized in BI/Big Data',
+      school: '3iL Ingénieurs',
+      period: '2025 – 2027',
+      location: 'Limoges, France'
+    },
+    {
+      degree: language === 'FR' ? 'Ingénieur en informatique spécialité Data Science' : 'Computer Engineer specialized in Data Science',
+      school: 'ESPRIT',
+      period: '2021 – 2026',
+      location: 'Tunis, Tunisia'
+    },
+    {
+      degree: language === 'FR' ? 'Baccalauréat en mathématiques' : 'High School Diploma in Mathematics',
+      school: 'Lycée BouSalem',
+      period: '2020 – 2021',
+      location: 'Jendouba, Tunisia'
+    }
+  ]
+
+  const currentCategory = skillCategories.find((cat) => cat.id === activeCategory)
+
+  return (
+    <section
+      ref={ref}
+      id="skills"
+      className="py-24 bg-grid dark:bg-grid-light text-white dark:text-gray-900 min-h-screen transition-all duration-700"
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* === Header === */}
+        <div
+          className={`text-center mb-20 transition-all duration-700 ${
+            isVisible ? 'animate-fade-in' : 'opacity-0'
+          }`}
+        >
+          <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm border border-blue-500/30">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              {language === 'FR' ? 'Expertise Technique' : 'Technical Expertise'}
+            </span>
+          </div>
+
+          <h2 className="text-4xl lg:text-6xl font-bold mb-6 text-white dark:text-gray-900">
+            {language === 'FR' ? 'Compétences & ' : 'Skills & '}
+            <span className="text-gradient bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              {language === 'FR' ? 'Formations' : 'Qualifications'}
+            </span>
+          </h2>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+          {/* === Left Column - Fixed Height === */}
+          <div className="flex flex-col">
+            <div className={`bg-gray-900/70 dark:bg-white/80 backdrop-blur-xl rounded-2xl border border-gray-700/50 dark:border-gray-300/50 shadow-2xl flex-1 min-h-[800px] flex flex-col transition-all duration-700 ${
+              isVisible ? 'animate-slide-in-left' : 'opacity-0 translate-x-[-50px]'
+            }`}>
+              <div className="p-8 flex-1 flex flex-col">
+                {/* Navigation */}
+                <div className="mb-8">
+                  <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    {language === 'FR' ? "Domaines d'Expertise" : 'Expertise Domains'}
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {skillCategories.map((category) => (
+                      <button
+                        key={category.id}
+                        onClick={() => setActiveCategory(category.id)}
+                        className={`p-4 rounded-xl border-2 transition-all duration-300 text-left group ${
+                          activeCategory === category.id
+                            ? `border-transparent bg-gradient-to-r ${category.color} text-white shadow-lg`
+                            : 'border-gray-600 dark:border-gray-400 bg-gray-800/50 dark:bg-gray-200/50 hover:border-blue-400'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-r ${category.color}`}>
+                            <category.icon className="w-5 h-5 text-white" />
+                          </div>
+                          <span className="font-semibold text-sm">{category.title}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Skill Progress */}
+                {currentCategory && (
+                  <div className="flex-1 flex flex-col">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${currentCategory.color} flex items-center justify-center shadow-lg`}>
+                        <currentCategory.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-white dark:text-gray-900">{currentCategory.title}</h4>
+                        <p className="text-gray-400 dark:text-gray-600 text-sm">
+                          {language === 'FR' ? 'Niveau de maîtrise' : 'Skill level'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 flex-1">
+                      {currentCategory.skills.map((skill, i) => (
+                        <div key={i} className="space-y-2">
+                          <div className="flex justify-between text-sm font-medium">
+                            <span className="text-white dark:text-gray-900">{skill.name}</span>
+                            <span className="text-blue-400">{skill.level}%</span>
+                          </div>
+                          <div className="w-full bg-gray-700 dark:bg-gray-300 rounded-full h-2 overflow-hidden">
+                            <div
+                              className={`h-2 rounded-full bg-gradient-to-r ${currentCategory.color} transition-all duration-1000`}
+                              style={{
+                                width: isVisible ? `${skill.level}%` : '0%',
+                                transitionDelay: `${i * 100}ms`
+                              }}
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* === Right Column - Fixed Height === */}
+          <div className="flex flex-col">
+            <div className={`bg-gray-900/70 dark:bg-white/80 backdrop-blur-xl rounded-2xl border border-blue-500/20 shadow-2xl flex-1 min-h-[800px] flex flex-col transition-all duration-700 ${
+              isVisible ? 'animate-slide-in-right' : 'opacity-0 translate-x-[50px]'
+            }`}>
+              <div className="p-8 flex-1 flex flex-col">
+                {/* === Education === */}
+                <div className="mb-8 flex-1">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <GraduationCap className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                      {language === 'FR' ? 'Formation' : 'Education'}
+                    </h3>
+                  </div>
+
+                  <div className="space-y-4">
+                    {education.map((edu, i) => (
+                      <div 
+                        key={i} 
+                        className="p-3 rounded-xl bg-gray-800/50 dark:bg-gray-200/50 hover:bg-gray-800/70 dark:hover:bg-gray-200/70 transition-all duration-300 group"
+                      >
+                        <h4 className="font-semibold text-white dark:text-gray-900 text-sm">
+                          {edu.degree}
+                        </h4>
+                        <p className="text-blue-400 font-medium text-xs">{edu.school}</p>
+                        <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-600 mt-1">
+                          <span>{edu.period}</span>
+                          <span>•</span>
+                          <span className="truncate">{edu.location}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* === Certifications === */}
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <Award className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                      {language === 'FR' ? 'Certifications' : 'Certifications'}
+                    </h3>
+                  </div>
+
+                  <div className="space-y-4 h-[calc(100%-80px)] overflow-y-auto">
+                    {certifications.map((group, i) => (
+                      <div key={i} className="transition-all duration-500">
+                        <h4 className={`text-sm font-semibold mb-3 bg-gradient-to-r ${group.color} bg-clip-text text-transparent`}>
+                          {group.domain}
+                        </h4>
+                        <div className="space-y-2 mb-4">
+                          {group.items.map((cert, j) => (
+                            <div 
+                              key={j} 
+                              className="flex items-center gap-3 p-3 rounded-xl bg-gray-800/50 dark:bg-gray-200/50 hover:bg-gray-800/70 dark:hover:bg-gray-200/70 transition-all duration-300 group"
+                            >
+                              <div className={`w-8 h-8 rounded-lg bg-gradient-to-r ${group.color} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform flex-shrink-0`}>
+                                <cert.icon className="w-4 h-4 text-white" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="text-sm font-semibold text-white dark:text-gray-900">
+                                  {cert.title}
+                                </h4>
+                                <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-gray-600">
+                                  <span>{cert.issuer}</span>
+                                  <span>•</span>
+                                  <span>{cert.year}</span>
+                                </div>
+                              </div>
+                              <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-400 transition-colors flex-shrink-0" />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Ajouter l'icône manquante
+const ChartBar = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+  </svg>
+)
